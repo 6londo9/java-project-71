@@ -2,6 +2,7 @@ package hexlet.code;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hexlet.code.Utils.Performer;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -78,6 +79,6 @@ public class Differ {
             }
         }
 
-    return mapper.writeValueAsString(resultMap);
+    return Performer.perform(mapper.writeValueAsString(resultMap));
     }
 }
