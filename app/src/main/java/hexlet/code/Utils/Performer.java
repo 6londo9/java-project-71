@@ -7,11 +7,11 @@ public class Performer {
 
         for (String str : performedStringAsMap) {
             String firstPartOfString = str.startsWith("{") ?
-                    str.substring(1, str.indexOf(":")) : str.substring(0, str.indexOf(":"));
+                    str.substring(1, str.indexOf(":") + 1) : str.substring(0, str.indexOf(":") + 1);
+            firstPartOfString = firstPartOfString.replaceAll("\"", "") + " ";
             String lastPartOfString = str.endsWith("}") ?
-                    str.substring(str.indexOf(":"), str.length() - 1) : str.substring(str.indexOf(":"));
-            String resultedString = firstPartOfString.replaceAll("\"", "")
-                    + " " + lastPartOfString;
+                    str.substring(str.indexOf(":") + 1, str.length() - 1) : str.substring(str.indexOf(":") + 1);
+            String resultedString = firstPartOfString + lastPartOfString;
 
             if (resultedString.startsWith("+") || resultedString.startsWith("-")) {
                 performedString = performedString + " " + resultedString + "\n";
