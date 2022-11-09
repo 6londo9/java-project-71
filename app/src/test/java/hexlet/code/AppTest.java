@@ -20,8 +20,15 @@ public class AppTest {
     public void testDiffer() throws Exception {
 
         String actual = Differ.generate(firstFilePath, secondFilePath);
-        String expected = "{\n + breaktest: 20\n - faketest: \"false\"\n + faketest: 20" +
-                "\n   make: 20\n - test: true\n + test: 10\n}";
+        String expected = """
+                {
+                 + breaktest: 20
+                 - faketest: "false"
+                 + faketest: 20
+                   make: 20
+                 - test: true
+                 + test: 10
+                }""";
         System.out.println(actual);
         assertEquals(expected, actual);
     }
