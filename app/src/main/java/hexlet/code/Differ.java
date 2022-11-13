@@ -78,7 +78,7 @@ public class Differ {
                 resultMap.put(newKey, newValue);
             }
         }
-
-        return Performer.perform(mapper.writeValueAsString(resultMap));
+        String result = Performer.perform(mapper.writeValueAsString(resultMap));
+        return result;
     }
 }
