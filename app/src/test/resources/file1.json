@@ -1,0 +1,5 @@
+{
+  "test": true,
+  "make": 20,
+  "faketest": "false"
+}
