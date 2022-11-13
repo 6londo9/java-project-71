@@ -25,3 +25,6 @@ lint-main:
 
 lint-test:
 	./gradlew checkstyleTest
+
+test:
+	./gradlew test
