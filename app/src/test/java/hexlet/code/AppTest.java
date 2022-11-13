@@ -2,7 +2,6 @@ package hexlet.code;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class AppTest {
@@ -10,15 +9,10 @@ public class AppTest {
     private String firstFilePath;
     private String secondFilePath;
 
-    @BeforeEach
-    public void beforeEach() {
-        firstFilePath = "./src/test/resources/file1.json";
-        secondFilePath = "./src/test/resources/file2.json";
-    }
-
     @Test
     public void testDiffer() throws Exception {
-
+        firstFilePath = "./src/test/resources/file1.json";
+        secondFilePath = "./src/test/resources/file2.json";
         String actual = Differ.generate(firstFilePath, secondFilePath);
         String expected = """
                 {

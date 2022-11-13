@@ -6,18 +6,19 @@ public class Performer {
         String[] performedStringAsMap = stringToPerform.split(",");
 
         for (String str : performedStringAsMap) {
-            String firstPartOfString = str.startsWith("{") ?
-                    str.substring(1, str.indexOf(":") + 1) : str.substring(0, str.indexOf(":") + 1);
+            String firstPartOfString = str.startsWith("{")
+                    ? str.substring(1, str.indexOf(":") + 1) : str.substring(0, str.indexOf(":") + 1);
             firstPartOfString = firstPartOfString.replaceAll("\"", "") + " ";
-            String lastPartOfString = str.endsWith("}") ?
-                    str.substring(str.indexOf(":") + 1, str.length() - 1) : str.substring(str.indexOf(":") + 1);
+            String lastPartOfString = str.endsWith("}")
+                    ? str.substring(str.indexOf(":") + 1, str.length() - 1) : str.substring(str.indexOf(":") + 1);
             String resultedString = firstPartOfString + lastPartOfString;
 
             if (resultedString.startsWith("+") || resultedString.startsWith("-")) {
-                performedString = performedString + " " + resultedString + "\n";
+                performedString = performedString + " ";
             } else {
-                performedString = performedString + "   " + resultedString + "\n";
+                performedString = performedString + "   ";
             }
+            performedString = performedString + resultedString + "\n";
         }
         performedString = performedString + "}";
         return performedString;

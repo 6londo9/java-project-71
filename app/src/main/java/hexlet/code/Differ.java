@@ -79,6 +79,6 @@ public class Differ {
             }
         }
 
-    return Performer.perform(mapper.writeValueAsString(resultMap));
+        return Performer.perform(mapper.writeValueAsString(resultMap));
     }
 }

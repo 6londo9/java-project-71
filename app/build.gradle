@@ -10,36 +10,35 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
     id 'java'
+    id 'checkstyle'
+    id 'jacoco'
+    id 'com.adarshr.test-logger' version '3.2.0'
 }
 
 apply plugin: 'java'
+apply plugin: 'checkstyle'
 
 group 'hexlet.code'
 
 repositories {
-    // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
 
 dependencies {
-    // Use JUnit Jupiter for testing.
     testImplementation(
             'org.junit.jupiter:junit-jupiter:5.9.0',
             'org.assertj:assertj-core:3.23.1'
     )
 
-    // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4.2'
 
-    // This dependency is used by the users.
     implementation 'info.picocli:picocli:4.7.0'
     annotationProcessor 'info.picocli:picocli-codegen:4.7.0'
 }
 
 application {
-    // Define the main class for the application.
     mainClass = 'hexlet.code.App'
 }
 
@@ -50,6 +49,27 @@ compileJava {
 }
 
 tasks.named('test') {
-    // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+checkstyle {
+    toolVersion '9.2.1'
+}
+
+checkstyleMain {
+    source ='src/main/java'
+}
+
+checkstyleTest {
+    source ='src/test/java'
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
+testlogger {
+    showStandardStreams true
 }
