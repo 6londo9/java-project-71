@@ -48,8 +48,18 @@ compileJava {
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
+}
+
+testlogger {
+    showStandardStreams true
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
 }
 
 checkstyle {
@@ -62,14 +72,4 @@ checkstyleMain {
 
 checkstyleTest {
     source ='src/test/java'
-}
-
-jacocoTestReport {
-    reports {
-        xml.required = true
-    }
-}
-
-testlogger {
-    showStandardStreams true
 }
