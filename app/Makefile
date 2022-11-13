@@ -16,15 +16,12 @@ build:
 install:
 	./gradlew clean install
 
-lint: lint-main lint-test
-	lint-main
+lint:
+	./gradlew checkstyleMain checkstyleTest
 	lint-test
-
-lint-main:
-	./gradlew checkstyleMain
-
-lint-test:
-	./gradlew checkstyleTest
 
 test:
 	./gradlew test
+
+report:
+	./gradlew jacocoTestReport
