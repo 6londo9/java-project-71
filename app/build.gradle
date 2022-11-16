@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
 
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.13.4'
 
     implementation 'info.picocli:picocli:4.7.0'
     annotationProcessor 'info.picocli:picocli-codegen:4.7.0'
@@ -59,6 +60,7 @@ testlogger {
 jacocoTestReport {
     reports {
         xml.required = true
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
 }
 

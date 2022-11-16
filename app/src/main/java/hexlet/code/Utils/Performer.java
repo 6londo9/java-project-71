@@ -1,26 +1,46 @@
 package hexlet.code.Utils;
 
+import java.util.Map;
+
 public class Performer {
-    public static String perform(String stringToPerform) {
-        String performedString = "{\n";
-        String[] performedStringAsMap = stringToPerform.split(",");
+    private static final String ADDED = "added";
+    private static final String REMOVED = "removed";
+    private static final String CHANGED = "changed";
+    private static final String UNCHANGED = "unchanged";
 
-        for (String str : performedStringAsMap) {
-            String firstPartOfString = str.startsWith("{")
-                    ? str.substring(1, str.indexOf(":") + 1) : str.substring(0, str.indexOf(":") + 1);
-            firstPartOfString = firstPartOfString.replaceAll("\"", "") + " ";
-            String lastPartOfString = str.endsWith("}")
-                    ? str.substring(str.indexOf(":") + 1, str.length() - 1) : str.substring(str.indexOf(":") + 1);
-            String resultedString = firstPartOfString + lastPartOfString;
+    public static String perform(Map<String, String> mapToPerform, Map<String, Object> data1,
+                                 Map<String, Object> data2) {
+        StringBuilder performedSb = new StringBuilder("{\n");
+        for (Map.Entry<String, String> entry : mapToPerform.entrySet()) {
 
-            if (resultedString.startsWith("+") || resultedString.startsWith("-")) {
-                performedString = performedString + " ";
-            } else {
-                performedString = performedString + "   ";
+            switch (entry.getValue()) {
+                case ADDED:
+                    performedSb.append(" + " + entry.getKey() + ": "
+                            + data2.get(entry.getKey()) + "\n");
+                    break;
+
+                case REMOVED:
+                    performedSb.append(" - " + entry.getKey() + ": "
+                            + data1.get(entry.getKey()) + "\n");
+                    break;
+
+                case CHANGED:
+                    performedSb.append(" - " + entry.getKey() + ": "
+                            + data1.get(entry.getKey()) + "\n");
+                    performedSb.append(" + " + entry.getKey() + ": "
+                            + data2.get(entry.getKey()) + "\n");
+                    break;
+
+                case UNCHANGED:
+                    performedSb.append("   " + entry.getKey() + ": "
+                            + data1.get(entry.getKey()) + "\n");
+                    break;
+
+                default:
+                    throw new Error("Unknown value:" + entry.getValue() + "! Check your code.");
             }
-            performedString = performedString + resultedString + "\n";
         }
-        performedString = performedString + "}";
-        return performedString;
+        performedSb.append("}");
+        return performedSb.toString();
     }
 }
