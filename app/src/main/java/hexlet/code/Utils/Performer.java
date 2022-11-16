@@ -14,33 +14,23 @@ public class Performer {
         for (Map.Entry<String, String> entry : mapToPerform.entrySet()) {
 
             switch (entry.getValue()) {
-                case ADDED:
-                    performedSb.append(" + " + entry.getKey() + ": "
-                            + data2.get(entry.getKey()) + "\n");
-                    break;
-
-                case REMOVED:
-                    performedSb.append(" - " + entry.getKey() + ": "
-                            + data1.get(entry.getKey()) + "\n");
-                    break;
-
-                case CHANGED:
+                case ADDED -> performedSb.append(" + " + entry.getKey() + ": "
+                        + data2.get(entry.getKey()) + "\n");
+                case REMOVED -> performedSb.append(" - " + entry.getKey() + ": "
+                        + data1.get(entry.getKey()) + "\n");
+                case CHANGED -> {
                     performedSb.append(" - " + entry.getKey() + ": "
                             + data1.get(entry.getKey()) + "\n");
                     performedSb.append(" + " + entry.getKey() + ": "
                             + data2.get(entry.getKey()) + "\n");
-                    break;
-
-                case UNCHANGED:
-                    performedSb.append("   " + entry.getKey() + ": "
-                            + data1.get(entry.getKey()) + "\n");
-                    break;
-
-                default:
-                    throw new Error("Unknown value:" + entry.getValue() + "! Check your code.");
+                }
+                case UNCHANGED -> performedSb.append("   " + entry.getKey() + ": "
+                        + data1.get(entry.getKey()) + "\n");
+                default -> throw new Error("Unknown value:" + entry.getValue() + "! Check your code.");
             }
         }
         performedSb.append("}");
+
         return performedSb.toString();
     }
 }

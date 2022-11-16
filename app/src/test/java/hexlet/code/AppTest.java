@@ -26,11 +26,19 @@ public class AppTest {
         assertEquals(expected, actual);
     }
 
+    @Test
     public void testYmlDiffer() throws Exception {
         firstFilePath = "./src/test/resources/file1.yml";
         secondFilePath = "./src/test/resources/file2.yml";
         String actual = Differ.generate(firstFilePath, secondFilePath);
-        String expected;
+        String expected = """
+                {
+                 - age: 33
+                 + age: 32
+                 + city: Bogota
+                 - job: Civil Engineer
+                   name: Garry
+                }""";
         assertEquals(expected, actual);
     }
 }
