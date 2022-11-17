@@ -14,5 +14,5 @@ ___
 ```
 make gen-diff filepath1 filepath2
 ```
-Where filepath1, filepath2 - paths to your files.
+Where filepath1, filepath2 - are paths to your files.
 ___

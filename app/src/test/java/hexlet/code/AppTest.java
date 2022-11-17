@@ -16,12 +16,12 @@ public class AppTest {
         String actual = Differ.generate(firstFilePath, secondFilePath);
         String expected = """
                 {
-                 + breaktest: 20
-                 - faketest: false
-                 + faketest: 20
-                   make: 20
-                 - test: true
-                 + test: 10
+                  + breaktest: 20
+                  - faketest: false
+                  + faketest: 20
+                    make: 20
+                  - test: true
+                  + test: 10
                 }""";
         assertEquals(expected, actual);
     }
@@ -33,11 +33,11 @@ public class AppTest {
         String actual = Differ.generate(firstFilePath, secondFilePath);
         String expected = """
                 {
-                 - age: 33
-                 + age: 32
-                 + city: Bogota
-                 - job: Civil Engineer
-                   name: Garry
+                  - age: 33
+                  + age: 32
+                  + city: Bogota
+                  - job: Civil Engineer
+                    name: Garry
                 }""";
         assertEquals(expected, actual);
     }

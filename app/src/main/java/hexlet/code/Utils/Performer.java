@@ -14,17 +14,17 @@ public class Performer {
         for (Map.Entry<String, String> entry : mapToPerform.entrySet()) {
 
             switch (entry.getValue()) {
-                case ADDED -> performedSb.append(" + " + entry.getKey() + ": "
+                case ADDED -> performedSb.append("  + " + entry.getKey() + ": "
                         + data2.get(entry.getKey()) + "\n");
-                case REMOVED -> performedSb.append(" - " + entry.getKey() + ": "
+                case REMOVED -> performedSb.append("  - " + entry.getKey() + ": "
                         + data1.get(entry.getKey()) + "\n");
                 case CHANGED -> {
-                    performedSb.append(" - " + entry.getKey() + ": "
+                    performedSb.append("  - " + entry.getKey() + ": "
                             + data1.get(entry.getKey()) + "\n");
-                    performedSb.append(" + " + entry.getKey() + ": "
+                    performedSb.append("  + " + entry.getKey() + ": "
                             + data2.get(entry.getKey()) + "\n");
                 }
-                case UNCHANGED -> performedSb.append("   " + entry.getKey() + ": "
+                case UNCHANGED -> performedSb.append("    " + entry.getKey() + ": "
                         + data1.get(entry.getKey()) + "\n");
                 default -> throw new Error("Unknown value:" + entry.getValue() + "! Check your code.");
             }
