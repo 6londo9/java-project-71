@@ -20,7 +20,7 @@ public class AppTest {
                   - faketest: false
                   + faketest: 20
                     make: 20
-                  - test: true
+                  - test: {nested=true}
                   + test: 10
                 }""";
         assertEquals(expected, actual);

@@ -2,6 +2,7 @@ package hexlet.code.Utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
 import java.util.Map;
 
 public class Formatter {
@@ -36,7 +37,8 @@ public class Formatter {
     }
 
     public static String stylishOutput(Map<String, String> performedMap, Map<String, Object> data1,
-                                       Map<String, Object> data2) {
+                                       Map<String, Object> data2) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
         sb = new StringBuilder("{\n");
         for (Map.Entry<String, String> entry : performedMap.entrySet()) {
             key = entry.getKey();
@@ -65,6 +67,7 @@ public class Formatter {
             }
         }
         sb.append("}");
+        mapper.writeValue(new File("terget.json"), sb.toString());
         return sb.toString();
     }
 

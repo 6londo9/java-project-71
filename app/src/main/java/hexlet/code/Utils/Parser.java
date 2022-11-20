@@ -44,7 +44,7 @@ public class Parser {
                 result.put(key, "added");
             } else if (!data2.containsKey(key)) {
                 result.put(key, "removed");
-            } else if (!data1.get(key).equals(data2.get(key))) {
+            } else if (!(data1.get(key).toString()).equals(data2.get(key).toString())) {
                 result.put(key, "changed");
             } else {
                 result.put(key, "unchanged");

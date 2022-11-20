@@ -1,5 +1,7 @@
 {
-  "test": true,
+  "test": {
+    "nested": true
+  },
   "make": 20,
   "faketest": "false"
 }
