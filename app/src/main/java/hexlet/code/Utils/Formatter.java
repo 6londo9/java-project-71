@@ -67,7 +67,6 @@ public class Formatter {
             }
         }
         sb.append("}");
-        mapper.writeValue(new File("terget.json"), sb.toString());
         return sb.toString();
     }
 
