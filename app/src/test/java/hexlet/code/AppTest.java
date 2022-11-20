@@ -70,4 +70,26 @@ public class AppTest {
                 """;
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testJsonOutput() throws Exception {
+        firstFilePath = "./src/test/resources/jsonOutput1.json";
+        secondFilePath = "./src/test/resources/jsonOutput2.json";
+        String actual = Differ.generate(firstFilePath, secondFilePath, "json");
+        String expected = """
+                {
+                  "age" : {
+                    "removed" : 14
+                  },
+                  "faculty" : {
+                    "added" : "Gryffindor"
+                  },
+                  "friend" : "Ron",
+                  "name" : {
+                    "was" : "Garry",
+                    "became" : "Harry"
+                  }
+                }""";
+        assertEquals(expected, actual);
+    }
 }
