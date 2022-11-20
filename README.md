@@ -12,10 +12,13 @@ ___
 
 #### Supported output formats:
 - [Stylish (default)](https://asciinema.org/a/YShuI161dQzzrBN3a55GszwhE).
+- [Plain](https://asciinema.org/a/FgK85aHCihzrsk32ctYBckYSt).
 ___
 ##### The usage of this app is simple. All you need is to type 
 ```
-make gen-diff filepath1 filepath2 ouputFormat
+make gen-diff -f outputFormat filepath1 filepath2
 ```
-Where filepath1, filepath2 - are paths to your files.
+Where:
+- filepath1, filepath2 - are paths to your files.
+- outputFormat - one of supported output formats.
 ___

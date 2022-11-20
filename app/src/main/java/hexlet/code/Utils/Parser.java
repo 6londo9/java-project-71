@@ -17,8 +17,8 @@ public class Parser {
         Path path = Path.of(filepath).toAbsolutePath().normalize();
         String file = Files.readString(path);
 
-        String format = filepath.substring(filepath.lastIndexOf("."));
-        ObjectMapper mapper = getMapper(format);
+        String inputFormat = filepath.substring(filepath.lastIndexOf("."));
+        ObjectMapper mapper = getMapper(inputFormat);
         return mapper.readValue(file, new TypeReference<>() {
         });
     }

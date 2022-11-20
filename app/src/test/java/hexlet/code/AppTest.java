@@ -2,6 +2,7 @@ package hexlet.code;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import hexlet.code.Utils.Formatter;
 import org.junit.jupiter.api.Test;
 
 public class AppTest {
@@ -55,6 +56,19 @@ public class AppTest {
                   + friends: {first=Germiona, second=Hagrid}
                     name: Garry
                 }""";
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPlainDiffer() throws Exception {
+        firstFilePath = "./src/test/resources/stylishyml1.yml";
+        secondFilePath = "./src/test/resources/stylishyml2.yml";
+        String actual = Differ.generate(firstFilePath, secondFilePath, "plain");
+        String expected = """
+                \nProperty 'age' was removed
+                Property 'faculty' was added with value: 'Gryffindor'
+                Property 'friends' was updated. From [complex value] to [complex value]
+                """;
         assertEquals(expected, actual);
     }
 }

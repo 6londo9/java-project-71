@@ -8,7 +8,6 @@ import java.util.Map;
 public class Differ {
 
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
-        // добавить поддержку формата в метод. Перенести сюда getMapper по приходящему формату
         Map<String, Object> firstFileAsMap = Parser.parse(filepath1);
         Map<String, Object> secondFileAsMap = Parser.parse(filepath2);
         Map<String, String> generatedDifference = Parser.genDiff(firstFileAsMap, secondFileAsMap);
