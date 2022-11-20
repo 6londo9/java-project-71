@@ -41,4 +41,21 @@ public class AppTest {
                 }""";
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testStylishYmlDiffer() throws Exception {
+        firstFilePath = "./src/test/resources/stylishyml1.yml";
+        secondFilePath = "./src/test/resources/stylishyml2.yml";
+        String actual = Differ.generate(firstFilePath, secondFilePath);
+        String expected = """
+                {
+                  - age: 14
+                  + faculty: Gryffindor  
+                  - friends: {first=Germiona, second=Ron}
+                  + friends: {first=Germiona, second=Hagrid}   
+                    name: Garry          
+                }""";
+        System.out.println(actual);
+        assertEquals(expected, actual);
+    }
 }

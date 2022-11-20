@@ -50,6 +50,7 @@ public class Parser {
                 result.put(key, "unchanged");
             }
         }
+        System.out.println(result);
 
         return result;
     }
