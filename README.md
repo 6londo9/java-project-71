@@ -6,13 +6,16 @@ ___
 ### Difference calculator
 
 #### This is a console app, which shows the difference between two files.
-#### Supported formats:
+#### Supported input formats:
 - [JSON](https://asciinema.org/a/F54xXgDKxVFaZf7J0gwoB70AG).
 - [YAML](https://asciinema.org/a/wiJeoOeM79gg9zQCeq7FrFD7W).
+
+#### Supported output formats:
+- [Stylish (default)](https://asciinema.org/a/YShuI161dQzzrBN3a55GszwhE).
 ___
 ##### The usage of this app is simple. All you need is to type 
 ```
-make gen-diff filepath1 filepath2
+make gen-diff filepath1 filepath2 ouputFormat
 ```
 Where filepath1, filepath2 - are paths to your files.
 ___
