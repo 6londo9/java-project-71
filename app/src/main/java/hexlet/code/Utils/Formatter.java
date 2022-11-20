@@ -4,7 +4,6 @@ import java.util.Map;
 
 public class Formatter {
 
-    private static String performedOutput;
     private static final String ADDED = "added";
     private static final String REMOVED = "removed";
     private static final String CHANGED = "changed";
@@ -12,11 +11,14 @@ public class Formatter {
 
     public static String perform(Map<String, String> mapToPerform, Map<String, Object> data1,
                                  Map<String, Object> data2, String format) {
-        switch (format) {
-            case "stylish" -> performedOutput = stylishOutput(mapToPerform, data1, data2);
-        }
+//        String performedOutput = () -> {
+//            switch (format) {
+//                case "stylish" -> stylishOutput(mapToPerform, data1, data2);
+//                default -> throw new Exception("Unknown format: " + format);
+//            }
+//        };
 
-        return performedOutput;
+        return stylishOutput(mapToPerform, data1, data2);
     }
 
     public static String stylishOutput(Map<String, String> mapToPerform, Map<String, Object> data1,

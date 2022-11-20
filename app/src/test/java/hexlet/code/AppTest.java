@@ -50,12 +50,11 @@ public class AppTest {
         String expected = """
                 {
                   - age: 14
-                  + faculty: Gryffindor  
+                  + faculty: Gryffindor
                   - friends: {first=Germiona, second=Ron}
-                  + friends: {first=Germiona, second=Hagrid}   
-                    name: Garry          
+                  + friends: {first=Germiona, second=Hagrid}
+                    name: Garry
                 }""";
-        System.out.println(actual);
         assertEquals(expected, actual);
     }
 }
