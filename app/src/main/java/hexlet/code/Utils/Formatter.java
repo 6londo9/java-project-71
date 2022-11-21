@@ -43,23 +43,23 @@ public class Formatter {
 
             switch (entry.getValue()) {
                 case ADDED -> {
-                    value = data2.get(key);
+                    value = String.valueOf(data2.get(key));
                     sb.append("  + ").append(key).append(": ").append(value).append("\n");
                 }
                 case REMOVED -> {
-                    value = data1.get(key);
+                    value = String.valueOf(data1.get(key));
                     sb.append("  - ").append(key).append(": ").append(value).append("\n");
                 }
                 case CHANGED -> {
-                    value = data1.get(key);
-                    Object newValue = data2.get(entry.getKey());
+                    value = String.valueOf(data1.get(key));
+                    Object newValue = String.valueOf(data2.get(entry.getKey()));
 
-                    sb.append("  - ").append(key).append(": ").append(value).append("\n");
-                    sb.append("  + ").append(key).append(": ").append(newValue).append("\n");
+                    sb.append(" ".repeat(2)).append("- ").append(key).append(": ").append(value).append("\n");
+                    sb.append(" ".repeat(2)).append("+ ").append(key).append(": ").append(newValue).append("\n");
                 }
                 case UNCHANGED -> {
-                    value = data1.get(key);
-                    sb.append("    ").append(key).append(": ").append(value).append("\n");
+                    value = String.valueOf(data1.get(key));
+                    sb.append(" ".repeat(4)).append(key).append(": ").append(value).append("\n");
                 }
                 default -> throw new Error("Unknown value:" + entry.getValue() + "! Check your code.");
             }
