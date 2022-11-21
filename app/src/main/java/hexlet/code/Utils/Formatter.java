@@ -71,29 +71,29 @@ public class Formatter {
 
     public static String plainOutput(Map<String, String> performedMap, Map<String, Object> data1,
                                      Map<String, Object> data2) {
-        sb = new StringBuilder("\n");
+        sb = new StringBuilder();
         for (Map.Entry<String, String> entry : performedMap.entrySet()) {
             key = entry.getKey();
 
             switch (entry.getValue()) {
                 case ADDED -> {
                     value = plainValueFormatter(data2.get(key));
-                    sb.append("Property '").append(key).append("' was added with value: ")
-                            .append(value).append("\n");
+                    sb.append("\nProperty '").append(key).append("' was added with value: ")
+                            .append(value);
                 }
-                case REMOVED -> sb.append("Property '").append(key).append("' was removed\n");
+                case REMOVED -> sb.append("\nProperty '").append(key).append("' was removed");
                 case CHANGED -> {
                     Object pastValue = plainValueFormatter(data1.get(key));
                     Object presentValue = plainValueFormatter(data2.get(key));
-                    sb.append("Property '").append(key).append("' was updated. From ").append(pastValue)
-                            .append(" to ").append(presentValue).append("\n");
+                    sb.append("\nProperty '").append(key).append("' was updated. From ").append(pastValue)
+                            .append(" to ").append(presentValue);
                 }
                 default -> {
                 }
             }
         }
 
-        return sb.toString();
+        return sb.toString().replaceFirst("\n", "");
     }
 
     private static String plainValueFormatter(Object obj) {

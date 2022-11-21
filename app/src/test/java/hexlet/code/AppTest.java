@@ -64,10 +64,9 @@ public class AppTest {
         secondFilePath = "./src/test/resources/stylishyml2.yml";
         String actual = Differ.generate(firstFilePath, secondFilePath, "plain");
         String expected = """
-                \nProperty 'age' was removed
+                Property 'age' was removed
                 Property 'faculty' was added with value: 'Gryffindor'
-                Property 'friends' was updated. From [complex value] to [complex value]
-                """;
+                Property 'friends' was updated. From [complex value] to [complex value]""";
         assertEquals(expected, actual);
     }
 
