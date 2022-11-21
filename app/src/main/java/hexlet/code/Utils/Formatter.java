@@ -36,8 +36,7 @@ public class Formatter {
     }
 
     public static String stylishOutput(Map<String, String> performedMap, Map<String, Object> data1,
-                                       Map<String, Object> data2) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
+                                       Map<String, Object> data2) {
         sb = new StringBuilder("{\n");
         for (Map.Entry<String, String> entry : performedMap.entrySet()) {
             key = entry.getKey();
