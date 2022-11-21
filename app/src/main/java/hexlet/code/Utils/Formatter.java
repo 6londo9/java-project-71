@@ -2,7 +2,6 @@ package hexlet.code.Utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
 import java.util.Map;
 
 public class Formatter {
