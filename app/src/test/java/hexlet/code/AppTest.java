@@ -2,93 +2,63 @@ package hexlet.code;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class AppTest {
 
-    private String firstFilePath;
-    private String secondFilePath;
+    private static String resultStylish;
+    private static String resultPlain;
+    private static String resultJson;
+    private static String firstFilePath;
+    private static String secondFilePath;
 
-    @Test
-    public void testJsonDiffer() throws Exception {
-        firstFilePath = "./src/test/resources/file1.json";
-        secondFilePath = "./src/test/resources/file2.json";
-        String actual = Differ.generate(firstFilePath, secondFilePath);
-        String expected = """
-                {
-                  + breaktest: 20
-                  - faketest: false
-                  + faketest: 20
-                    make: 20
-                  - test: {nested=true}
-                  + test: 10
-                }""";
-        assertEquals(expected, actual);
+    private static Path getFixturePath(String fileName) {
+        return Paths.get("src", "test", "resources", "fixtures", fileName)
+                .toAbsolutePath().normalize();
     }
 
-    @Test
-    public void testYmlDiffer() throws Exception {
-        firstFilePath = "./src/test/resources/file1.yml";
-        secondFilePath = "./src/test/resources/file2.yml";
-        String actual = Differ.generate(firstFilePath, secondFilePath);
-        String expected = """
-                {
-                  - age: 33
-                  + age: 32
-                  + city: Bogota
-                  - job: Civil Engineer
-                    name: Garry
-                }""";
-        assertEquals(expected, actual);
+    private static String readFixture(String fileName) throws Exception {
+        Path filePath = getFixturePath(fileName);
+        return Files.readString(filePath).trim();
     }
 
+    @BeforeAll
+    public static void beforeAll() throws Exception {
+        resultStylish = readFixture("stylish_output.txt");
+        resultPlain = readFixture("plain_output.txt");
+        resultJson = readFixture("json_output.txt");
+    }
     @Test
-    public void testStylishYmlDiffer() throws Exception {
-        firstFilePath = "./src/test/resources/stylishyml1.yml";
-        secondFilePath = "./src/test/resources/stylishyml2.yml";
+    public void testStylishDiffer() throws Exception {
+        firstFilePath = "./src/test/resources/fixtures/file1.json";
+        secondFilePath = "./src/test/resources/fixtures/file2.json";
         String actual = Differ.generate(firstFilePath, secondFilePath);
-        String expected = """
-                {
-                  - age: 14
-                  + faculty: Gryffindor
-                  - friends: {first=Germiona, second=Ron}
-                  + friends: {first=Germiona, second=Hagrid}
-                    name: Garry
-                }""";
+        String expected = resultStylish;
         assertEquals(expected, actual);
     }
 
     @Test
     public void testPlainDiffer() throws Exception {
-        firstFilePath = "./src/test/resources/stylishyml1.yml";
-        secondFilePath = "./src/test/resources/stylishyml2.yml";
+        firstFilePath = "./src/test/resources/fixtures/file1.json";
+        secondFilePath = "./src/test/resources/fixtures/file2.json";
         String actual = Differ.generate(firstFilePath, secondFilePath, "plain");
-        String expected = """
-                Property 'age' was removed
-                Property 'faculty' was added with value: 'Gryffindor'
-                Property 'friends' was updated. From [complex value] to [complex value]""";
+        String expected = resultPlain;
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testJsonOutput() throws Exception {
-        firstFilePath = "./src/test/resources/jsonOutput1.json";
-        secondFilePath = "./src/test/resources/jsonOutput2.json";
+    public void testJsonDiffer() throws Exception {
+        firstFilePath = "./fixtures/file1.json";
+        secondFilePath = "./fixtures/file2.json";
+//        firstFilePath = "./src/test/resources/jsonOutput1.json";
+//        secondFilePath = "./src/test/resources/jsonOutput2.json";
         String actual = Differ.generate(firstFilePath, secondFilePath, "json");
-        String expected = """
-                {
-                  "age" : {
-                    "removed" : 14
-                  },
-                  "faculty" : {
-                    "added" : "Gryffindor"
-                  },
-                  "friend" : "Ron",
-                  "name" : {
-                    "was" : "Garry",
-                    "became" : "Harry"
-                  }
-                }""";
+        String expected = resultJson;
         assertEquals(expected, actual);
     }
 }

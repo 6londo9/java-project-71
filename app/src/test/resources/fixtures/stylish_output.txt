@@ -1,0 +1,8 @@
+{
+  + breaktest: 20
+  - faketest: false
+  + faketest: 20
+    make: 20
+  - test: {nested=true}
+  + test: 10
+}
