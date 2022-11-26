@@ -11,7 +11,6 @@ public class Plain {
     public static String render(Map<String, Object> diff) {
 
         StringBuilder sb = new StringBuilder();
-        System.out.println(diff);
 
         for (Map.Entry<String, Object> entry : diff.entrySet()) {
             String key = entry.getKey();

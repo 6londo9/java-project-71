@@ -1,11 +1,13 @@
 package hexlet.code;
 
+
 import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DiffGenerator {
 
@@ -43,21 +45,27 @@ public class DiffGenerator {
 
         for (Map.Entry<String, String> entry : genDiff.entrySet()) {
             String key = entry.getKey();
-
             Object value;
             switch (entry.getValue()) {
                 case ADDED -> {
                     value = secondMap.get(key);
-                    resultedDiff.put(key, Map.of(ADDED, value));
+                    resultedDiff.put(key, new HashMap<String, Object>() {{
+                            put(ADDED, value); }}
+                    );
                 }
                 case REMOVED -> {
                     value = firstMap.get(key);
-                    resultedDiff.put(key, Map.of(REMOVED, value));
+                    resultedDiff.put(key, new HashMap<String, Object>() {{
+                            put(REMOVED, value); }}
+                    );
                 }
                 case CHANGED -> {
                     value = firstMap.get(key);
                     Object newValue = secondMap.get(key);
-                    resultedDiff.put(key, Map.of(REMOVED, value, ADDED, newValue));
+                    resultedDiff.put(key, new HashMap<String, Object>() {{
+                            put(REMOVED, value);
+                            put(ADDED, newValue); }}
+                    );
                 }
                 case UNCHANGED -> {
                     value = secondMap.get(key);
@@ -66,7 +74,6 @@ public class DiffGenerator {
                 default -> throw new Exception("Unknown value: " + entry.getValue() + "!");
             }
         }
-
         return resultedDiff;
     }
 

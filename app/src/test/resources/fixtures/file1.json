@@ -3,5 +3,5 @@
     "nested": true
   },
   "make": 20,
-  "faketest": "false"
+  "faketest": null
 }

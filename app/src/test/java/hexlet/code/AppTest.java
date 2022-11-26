@@ -11,9 +11,12 @@ import java.nio.file.Paths;
 
 public class AppTest {
 
-    private static String resultStylish;
-    private static String resultPlain;
-    private static String resultJson;
+    private static String resultStylishFromJson;
+    private static String resultStylishFromYml;
+    private static String resultPlainFromJson;
+    private static String resultPlainFromYml;
+    private static String resultJsonFromJson;
+    private static String resultJsonFromYml;
     private static String firstFilePath;
     private static String secondFilePath;
 
@@ -29,36 +32,64 @@ public class AppTest {
 
     @BeforeAll
     public static void beforeAll() throws Exception {
-        resultStylish = readFixture("stylish_output.txt");
-        resultPlain = readFixture("plain_output.txt");
-        resultJson = readFixture("json_output.txt");
+        resultStylishFromJson = readFixture("stylish_output_json.txt");
+        resultPlainFromJson = readFixture("plain_output_json.txt");
+        resultStylishFromYml = readFixture("stylish_output_yml.txt");
+        resultPlainFromYml = readFixture("plain_output_yml.txt");
+        resultJsonFromJson = readFixture("json_output_json.txt");
+        resultJsonFromYml = readFixture("json_output_yml.txt");
     }
     @Test
-    public void testStylishDiffer() throws Exception {
+    public void testStylishDifferFromJson() throws Exception {
         firstFilePath = "./src/test/resources/fixtures/file1.json";
         secondFilePath = "./src/test/resources/fixtures/file2.json";
         String actual = Differ.generate(firstFilePath, secondFilePath);
-        String expected = resultStylish;
-        System.out.println(expected);
-        System.out.println(actual);
+        String expected = resultStylishFromJson;
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testPlainDiffer() throws Exception {
+    public void testStylishDifferFromYML() throws Exception {
+        firstFilePath = "./src/test/resources/fixtures/file1.yml";
+        secondFilePath = "./src/test/resources/fixtures/file2.yml";
+        String actual = Differ.generate(firstFilePath, secondFilePath);
+        String expected = resultStylishFromYml;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPlainDifferFromJson() throws Exception {
         firstFilePath = "./src/test/resources/fixtures/file1.json";
         secondFilePath = "./src/test/resources/fixtures/file2.json";
         String actual = Differ.generate(firstFilePath, secondFilePath, "plain");
-        String expected = resultPlain;
+        String expected = resultPlainFromJson;
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testJsonDiffer() throws Exception {
-        firstFilePath = "fixtures/file1.json";
-        secondFilePath = "fixtures/file2.json";
+    public void testPlainDifferFromYML() throws Exception {
+        firstFilePath = "./src/test/resources/fixtures/file1.yml";
+        secondFilePath = "./src/test/resources/fixtures/file2.yml";
+        String actual = Differ.generate(firstFilePath, secondFilePath, "plain");
+        String expected = resultPlainFromYml;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testJsonDifferFromJson() throws Exception {
+        firstFilePath = "./src/test/resources/fixtures/file1.json";
+        secondFilePath = "./src/test/resources/fixtures/file2.json";
         String actual = Differ.generate(firstFilePath, secondFilePath, "json");
-        String expected = resultJson;
+        String expected = resultJsonFromJson;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testJsonDifferFromYml() throws Exception {
+        firstFilePath = "./src/test/resources/fixtures/file1.yml";
+        secondFilePath = "./src/test/resources/fixtures/file2.yml";
+        String actual = Differ.generate(firstFilePath, secondFilePath, "json");
+        String expected = resultJsonFromYml;
         assertEquals(expected, actual);
     }
 }

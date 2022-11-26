@@ -1,0 +1,3 @@
+Property 'age' was updated. From 33 to 32
+Property 'city' was added with value: 'Bogota'
+Property 'job' was removed

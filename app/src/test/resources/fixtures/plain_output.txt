@@ -1,3 +1,0 @@
-Property 'breaktest' was added with value: 20
-Property 'faketest' was updated. From 'false' to 20
-Property 'test' was updated. From [complex value] to 10
