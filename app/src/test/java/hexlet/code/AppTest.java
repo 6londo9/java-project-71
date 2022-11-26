@@ -1,13 +1,16 @@
 package hexlet.code;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import hexlet.code.Formatter.Formatter;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
 
@@ -91,5 +94,21 @@ public class AppTest {
         String actual = Differ.generate(firstFilePath, secondFilePath, "json");
         String expected = resultJsonFromYml;
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testExceptionWasThrown() {
+        Map<String, Object> testMap1 = new HashMap<>();
+        testMap1.put("key", "value");
+        Map<String, Object> testMap2 = new HashMap<>();
+        testMap1.put("key", "value");
+        Exception exception = assertThrows(Exception.class, () -> {
+            Formatter.format(testMap1, "bingo");
+        });
+
+        String expectedMessage = "Unknown format: bingo!";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }
