@@ -63,33 +63,33 @@ public class Plain {
     }
 
     //Оставил на случай дальнейшего использования
-    public static String render(List<Object> diff) {
-
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < diff.size(); i++) {
-            String keyAndValue = String.valueOf(diff.get(i));
-            String key = keyAndValue.substring(0, keyAndValue.indexOf("="));
-            Object value = keyAndValue.substring(keyAndValue.indexOf("=") + 1, keyAndValue.lastIndexOf(","));
-
-            if (keyAndValue.endsWith("added")) {
-                sb.append("\nProperty '").append(key).append("' was added with value: ")
-                        .append(value);
-
-            } else if (keyAndValue.endsWith("removed")) {
-                sb.append("\nProperty '").append(key).append("' was removed");
-
-            } else if (keyAndValue.endsWith("changed")) {
-                String next = diff.get(i + 1).toString();
-                String nextValue = next.substring(next.indexOf("=") + 1, next.lastIndexOf(","));
-                String oldValue = plainValueFormatter(value);
-                String newValue = plainValueFormatter(nextValue);
-                sb.append("\nProperty '").append(key).append("' was updated. From ").append(oldValue)
-                        .append(" to ").append(newValue);
-                i++;
-            }
-        }
-
-        return sb.toString().replaceFirst("\n", "");
-    }
+//    public static String render(List<Object> diff) {
+//
+//        StringBuilder sb = new StringBuilder();
+//
+//        for (int i = 0; i < diff.size(); i++) {
+//            String keyAndValue = String.valueOf(diff.get(i));
+//            String key = keyAndValue.substring(0, keyAndValue.indexOf("="));
+//            Object value = keyAndValue.substring(keyAndValue.indexOf("=") + 1, keyAndValue.lastIndexOf(","));
+//
+//            if (keyAndValue.endsWith("added")) {
+//                sb.append("\nProperty '").append(key).append("' was added with value: ")
+//                        .append(value);
+//
+//            } else if (keyAndValue.endsWith("removed")) {
+//                sb.append("\nProperty '").append(key).append("' was removed");
+//
+//            } else if (keyAndValue.endsWith("changed")) {
+//                String next = diff.get(i + 1).toString();
+//                String nextValue = next.substring(next.indexOf("=") + 1, next.lastIndexOf(","));
+//                String oldValue = plainValueFormatter(value);
+//                String newValue = plainValueFormatter(nextValue);
+//                sb.append("\nProperty '").append(key).append("' was updated. From ").append(oldValue)
+//                        .append(" to ").append(newValue);
+//                i++;
+//            }
+//        }
+//
+//        return sb.toString().replaceFirst("\n", "");
+//    }
 }
