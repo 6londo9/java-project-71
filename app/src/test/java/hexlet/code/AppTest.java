@@ -10,7 +10,10 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class AppTest {
 
@@ -100,11 +103,7 @@ public class AppTest {
     public void testExceptionWasThrown() {
         Map<String, Object> testMap1 = new HashMap<>();
         testMap1.put("key", "value");
-        Map<String, Object> testMap2 = new HashMap<>();
-        testMap1.put("key", "value");
-        Exception exception = assertThrows(Exception.class, () -> {
-            Formatter.format(testMap1, "bingo");
-        });
+        Exception exception = assertThrows(Exception.class, () -> Formatter.format(testMap1, "bingo"));
 
         String expectedMessage = "Unknown format: bingo!";
         String actualMessage = exception.getMessage();
