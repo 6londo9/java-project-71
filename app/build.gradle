@@ -56,14 +56,9 @@ testlogger {
     showStandardStreams true
 }
 
-jacoco {
-    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
-}
-
 jacocoTestReport {
     reports {
         xml.required = true
-        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
 }
 

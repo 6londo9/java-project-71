@@ -1,6 +1,5 @@
 package hexlet.code.Formatter;
 
-import java.util.List;
 import java.util.Map;
 
 public class Stylish {

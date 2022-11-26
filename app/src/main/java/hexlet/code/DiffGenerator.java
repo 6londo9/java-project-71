@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DiffGenerator {
 
@@ -78,37 +76,37 @@ public class DiffGenerator {
     }
 
     // Оставил для возможной дальнейшей замены
-    public static List<Object> diffToRend(Map<String, Object> firstMap, Map<String, Object> secondMap)
-            throws Exception {
-        List<Object> diff = new ArrayList<>();
-        Map<String, String> diffMap = genDiff(firstMap, secondMap);
-
-        for (Map.Entry<String, String> entry : diffMap.entrySet()) {
-            String key = entry.getKey();
-
-            Object value;
-            switch (entry.getValue()) {
-                case ADDED -> {
-                    value = secondMap.get(key);
-                    diff.add(key + "=" + value + ",added");
-                }
-                case REMOVED -> {
-                    value = firstMap.get(key);
-                    diff.add(key + "=" + value + ",removed");
-                }
-                case CHANGED -> {
-                    value = firstMap.get(key);
-                    Object newValue = secondMap.get(key);
-                    diff.add(key + "=" + value + ",changed");
-                    diff.add(key + "=" + newValue + ",changed");
-                }
-                case UNCHANGED -> {
-                    value = secondMap.get(key);
-                    diff.add(key + "=" + value + ",unchanged");
-                }
-                default -> throw new Exception("Unknown value: " + entry.getValue() + "!");
-            }
-        }
-        return diff;
-    }
+//    public static List<Object> diffToRend(Map<String, Object> firstMap, Map<String, Object> secondMap)
+//            throws Exception {
+//        List<Object> diff = new ArrayList<>();
+//        Map<String, String> diffMap = genDiff(firstMap, secondMap);
+//
+//        for (Map.Entry<String, String> entry : diffMap.entrySet()) {
+//            String key = entry.getKey();
+//
+//            Object value;
+//            switch (entry.getValue()) {
+//                case ADDED -> {
+//                    value = secondMap.get(key);
+//                    diff.add(key + "=" + value + ",added");
+//                }
+//                case REMOVED -> {
+//                    value = firstMap.get(key);
+//                    diff.add(key + "=" + value + ",removed");
+//                }
+//                case CHANGED -> {
+//                    value = firstMap.get(key);
+//                    Object newValue = secondMap.get(key);
+//                    diff.add(key + "=" + value + ",changed");
+//                    diff.add(key + "=" + newValue + ",changed");
+//                }
+//                case UNCHANGED -> {
+//                    value = secondMap.get(key);
+//                    diff.add(key + "=" + value + ",unchanged");
+//                }
+//                default -> throw new Exception("Unknown value: " + entry.getValue() + "!");
+//            }
+//        }
+//        return diff;
+//    }
 }
