@@ -39,6 +39,8 @@ public class AppTest {
         secondFilePath = "./src/test/resources/fixtures/file2.json";
         String actual = Differ.generate(firstFilePath, secondFilePath);
         String expected = resultStylish;
+        System.out.println(expected);
+        System.out.println(actual);
         assertEquals(expected, actual);
     }
 
@@ -53,10 +55,8 @@ public class AppTest {
 
     @Test
     public void testJsonDiffer() throws Exception {
-        firstFilePath = "./fixtures/file1.json";
-        secondFilePath = "./fixtures/file2.json";
-//        firstFilePath = "./src/test/resources/jsonOutput1.json";
-//        secondFilePath = "./src/test/resources/jsonOutput2.json";
+        firstFilePath = "fixtures/file1.json";
+        secondFilePath = "fixtures/file2.json";
         String actual = Differ.generate(firstFilePath, secondFilePath, "json");
         String expected = resultJson;
         assertEquals(expected, actual);
