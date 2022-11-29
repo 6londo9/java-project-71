@@ -9,10 +9,10 @@ import java.util.TreeSet;
 
 public class DiffGenerator {
 
-    private static final String ADDED = "added";
-    private static final String REMOVED = "removed";
-    private static final String CHANGED = "changed";
-    private static final String UNCHANGED = "unchanged";
+    public static final String ADDED = "added";
+    public static final String REMOVED = "removed";
+    public static final String CHANGED = "changed";
+    public static final String UNCHANGED = "unchanged";
 
     private static Map<String, String> genDiff(Map<String, Object> firstMap, Map<String, Object> secondMap) {
         Map<String, String> result = new LinkedHashMap<>();
@@ -22,13 +22,13 @@ public class DiffGenerator {
         for (String key : keys) {
 
             if (!firstMap.containsKey(key)) {
-                result.put(key, "added");
+                result.put(key, ADDED);
             } else if (!secondMap.containsKey(key)) {
-                result.put(key, "removed");
+                result.put(key, REMOVED);
             } else if (!String.valueOf(firstMap.get(key)).equals(String.valueOf(secondMap.get(key)))) {
-                result.put(key, "changed");
+                result.put(key, CHANGED);
             } else {
-                result.put(key, "unchanged");
+                result.put(key, UNCHANGED);
             }
         }
 
@@ -74,39 +74,4 @@ public class DiffGenerator {
         }
         return resultedDiff;
     }
-
-    // Оставил для возможной дальнейшей замены
-//    public static List<Object> diffToRend(Map<String, Object> firstMap, Map<String, Object> secondMap)
-//            throws Exception {
-//        List<Object> diff = new ArrayList<>();
-//        Map<String, String> diffMap = genDiff(firstMap, secondMap);
-//
-//        for (Map.Entry<String, String> entry : diffMap.entrySet()) {
-//            String key = entry.getKey();
-//
-//            Object value;
-//            switch (entry.getValue()) {
-//                case ADDED -> {
-//                    value = secondMap.get(key);
-//                    diff.add(key + "=" + value + ",added");
-//                }
-//                case REMOVED -> {
-//                    value = firstMap.get(key);
-//                    diff.add(key + "=" + value + ",removed");
-//                }
-//                case CHANGED -> {
-//                    value = firstMap.get(key);
-//                    Object newValue = secondMap.get(key);
-//                    diff.add(key + "=" + value + ",changed");
-//                    diff.add(key + "=" + newValue + ",changed");
-//                }
-//                case UNCHANGED -> {
-//                    value = secondMap.get(key);
-//                    diff.add(key + "=" + value + ",unchanged");
-//                }
-//                default -> throw new Exception("Unknown value: " + entry.getValue() + "!");
-//            }
-//        }
-//        return diff;
-//    }
 }

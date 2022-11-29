@@ -29,6 +29,4 @@ public class Parser {
             return new ObjectMapper();
         }
     }
-
-
 }

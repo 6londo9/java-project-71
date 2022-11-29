@@ -1,5 +1,9 @@
 .DEFUALT_GOAL := build-run
 
+runargs := $(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
+
+gen-diff:
+	./build/install/app/bin/app $(runargs)
 
 clean:
 	./gradlew clean

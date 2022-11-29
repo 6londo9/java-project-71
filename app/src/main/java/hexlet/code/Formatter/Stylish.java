@@ -2,6 +2,9 @@ package hexlet.code.Formatter;
 
 import java.util.Map;
 
+import static hexlet.code.DiffGenerator.REMOVED;
+import static hexlet.code.DiffGenerator.ADDED;
+
 public class Stylish {
 
     private static final int TABULATION = 4;
@@ -23,8 +26,8 @@ public class Stylish {
 
                 switch (deepValue.size()) {
                     case CHANGED -> {
-                        Object oldValue = deepValue.get("removed");
-                        Object newValue = deepValue.get("added");
+                        Object oldValue = deepValue.get(REMOVED);
+                        Object newValue = deepValue.get(ADDED);
                         sb.append(" ".repeat(2)).append("- ").append(key).append(": ")
                                 .append(oldValue).append("\n")
                                 .append(" ".repeat(2)).append("+ ").append(key).append(": ")
@@ -32,14 +35,14 @@ public class Stylish {
                     }
 
                     case UNCHANGED -> {
-                        if (deepValue.containsKey("added")) {
-                            Object addedValue = deepValue.get("added");
+                        if (deepValue.containsKey(ADDED)) {
+                            Object addedValue = deepValue.get(ADDED);
                             sb.append(" ".repeat(2)).append("+ ").append(key).append(": ")
                                     .append(addedValue)
                                     .append("\n");
 
                         } else {
-                            Object removedValue = deepValue.get("removed");
+                            Object removedValue = deepValue.get(REMOVED);
                             sb.append(" ".repeat(2)).append("- ").append(key).append(": ")
                                     .append(removedValue)
                                     .append("\n");
@@ -56,36 +59,4 @@ public class Stylish {
         sb.append("}");
         return sb.toString();
     }
-
-//      Оставил на случай дальнейшего использования
-//    public static String render(List<Object> diff) {
-//
-//        StringBuilder sb = new StringBuilder("{\n");
-//
-//        for (int i = 0; i < diff.size(); i++) {
-//            String keyAndValue = diff.get(i).toString();
-//            String key = keyAndValue.substring(0, keyAndValue.indexOf("="));
-//            String value = keyAndValue.substring(keyAndValue.indexOf("=") + 1, keyAndValue.lastIndexOf(","));
-//
-//            if (keyAndValue.endsWith("added")) {
-//                sb.append(" ".repeat(2)).append("+ ").append(key).append(": ").append(value).append("\n");
-//
-//            } else if (keyAndValue.endsWith("removed")) {
-//                sb.append(" ".repeat(2)).append("- ").append(key).append(": ").append(value).append("\n");
-//
-//            } else if (keyAndValue.endsWith("unchanged")) {
-//                sb.append(" ".repeat(TABULATION)).append(key).append(": ").append(value).append("\n");
-//
-//            } else {
-//                String next = diff.get(i + 1).toString();
-//                String nextValue = next.substring(next.indexOf("=") + 1, next.lastIndexOf(","));
-//                sb.append(" ".repeat(2)).append("- ").append(key).append(": ").append(value).append("\n");
-//                sb.append(" ".repeat(2)).append("+ ").append(key).append(": ").append(nextValue).append("\n");
-//                i++;
-//            }
-//        }
-//
-//        sb.append("}");
-//        return sb.toString();
-//    }
 }

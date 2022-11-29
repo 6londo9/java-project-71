@@ -1,12 +1,17 @@
 package hexlet.code.Formatter;
 
+
 import java.util.List;
 import java.util.Map;
 
+import static hexlet.code.DiffGenerator.ADDED;
+import static hexlet.code.DiffGenerator.REMOVED;
+
+
 public class Plain {
 
-    private static final int CHANGED = 2;
-    private static final int UNCHANGED = 1;
+    private static final int UPDATED = 2;
+    private static final int ADDED_OR_REMOVED = 1;
 
     public static String render(Map<String, Object> diff) {
 
@@ -20,17 +25,17 @@ public class Plain {
                 Map<String, Object> deepValue = (Map<String, Object>) value;
 
                 switch (deepValue.size()) {
-                    case CHANGED -> {
-                        String oldValue = plainValueFormatter(deepValue.get("removed"));
-                        String newValue = plainValueFormatter(deepValue.get("added"));
+                    case UPDATED -> {
+                        String oldValue = plainValueFormatter(deepValue.get(REMOVED));
+                        String newValue = plainValueFormatter(deepValue.get(ADDED));
                         sb.append("\nProperty '").append(key).append("' was updated. From ")
                                 .append(oldValue)
                                 .append(" to ").append(newValue);
                     }
 
-                    case UNCHANGED -> {
-                        if (deepValue.containsKey("added")) {
-                            String addedValue = plainValueFormatter(deepValue.get("added"));
+                    case ADDED_OR_REMOVED -> {
+                        if (deepValue.containsKey(ADDED)) {
+                            String addedValue = plainValueFormatter(deepValue.get(ADDED));
                             sb.append("\nProperty '").append(key).append("' was added with value: ")
                                     .append(addedValue);
 
@@ -61,35 +66,4 @@ public class Plain {
 
         return value.toString();
     }
-
-    //Оставил на случай дальнейшего использования
-//    public static String render(List<Object> diff) {
-//
-//        StringBuilder sb = new StringBuilder();
-//
-//        for (int i = 0; i < diff.size(); i++) {
-//            String keyAndValue = String.valueOf(diff.get(i));
-//            String key = keyAndValue.substring(0, keyAndValue.indexOf("="));
-//            Object value = keyAndValue.substring(keyAndValue.indexOf("=") + 1, keyAndValue.lastIndexOf(","));
-//
-//            if (keyAndValue.endsWith("added")) {
-//                sb.append("\nProperty '").append(key).append("' was added with value: ")
-//                        .append(value);
-//
-//            } else if (keyAndValue.endsWith("removed")) {
-//                sb.append("\nProperty '").append(key).append("' was removed");
-//
-//            } else if (keyAndValue.endsWith("changed")) {
-//                String next = diff.get(i + 1).toString();
-//                String nextValue = next.substring(next.indexOf("=") + 1, next.lastIndexOf(","));
-//                String oldValue = plainValueFormatter(value);
-//                String newValue = plainValueFormatter(nextValue);
-//                sb.append("\nProperty '").append(key).append("' was updated. From ").append(oldValue)
-//                        .append(" to ").append(newValue);
-//                i++;
-//            }
-//        }
-//
-//        return sb.toString().replaceFirst("\n", "");
-//    }
 }
