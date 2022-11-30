@@ -1,1 +1,1 @@
-{"age":{"removed":33,"added":32},"city":{"added":"Bogota"},"job":{"removed":"Civil Engineer"},"name":"Garry"}
+{"age":{"statusName":"changed","oldValue":33,"newValue":32},"city":{"statusName":"added","oldValue":null,"newValue":"Bogota"},"job":{"statusName":"removed","oldValue":"Civil Engineer","newValue":null},"name":{"statusName":"unchanged","oldValue":"Garry","newValue":null}}

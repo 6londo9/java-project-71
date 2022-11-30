@@ -101,8 +101,8 @@ public class AppTest {
 
     @Test
     public void testExceptionWasThrown() {
-        Map<String, Object> testMap1 = new HashMap<>();
-        testMap1.put("key", "value");
+        Map<String, Status> testMap1 = new HashMap<>();
+        testMap1.put("key", new Status(Status.ADDED, 1));
         Exception exception = assertThrows(Exception.class, () -> Formatter.format(testMap1, "bingo"));
 
         String expectedMessage = "Unknown format: bingo!";

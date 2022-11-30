@@ -1,1 +1,1 @@
-{"breaktest":{"added":20},"faketest":{"removed":null,"added":20},"make":20,"test":{"removed":{"nested":true},"added":10}}
+{"breaktest":{"statusName":"added","oldValue":null,"newValue":20},"faketest":{"statusName":"changed","oldValue":null,"newValue":20},"make":{"statusName":"unchanged","oldValue":20,"newValue":null},"test":{"statusName":"changed","oldValue":{"nested":true},"newValue":10}}

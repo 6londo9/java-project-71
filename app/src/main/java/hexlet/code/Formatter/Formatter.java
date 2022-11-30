@@ -1,11 +1,12 @@
 package hexlet.code.Formatter;
 
+import hexlet.code.Status;
+
 import java.util.Map;
 
 public class Formatter {
 
-    public static String format(Map<String, Object> diff, String format) throws Exception {
-
+    public static String format(Map<String, Status> diff, String format) throws Exception {
         switch (format) {
             case "stylish" -> {
                 return Stylish.render(diff);

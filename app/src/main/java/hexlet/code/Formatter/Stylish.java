@@ -1,58 +1,55 @@
 package hexlet.code.Formatter;
 
+import hexlet.code.Status;
+
 import java.util.Map;
 
-import static hexlet.code.DiffGenerator.REMOVED;
-import static hexlet.code.DiffGenerator.ADDED;
+import static hexlet.code.Status.ADDED;
+import static hexlet.code.Status.REMOVED;
+import static hexlet.code.Status.CHANGED;
+import static hexlet.code.Status.UNCHANGED;
 
 public class Stylish {
 
     private static final int TABULATION = 4;
-    private static final int CHANGED = 2;
-    private static final int UNCHANGED = 1;
 
-
-
-    public static String render(Map<String, Object> diff) {
+    public static String render(Map<String, Status> diff) throws Exception {
 
         StringBuilder sb = new StringBuilder("{\n");
 
-        for (Map.Entry<String, Object> entry : diff.entrySet()) {
+        for (Map.Entry<String, Status> entry : diff.entrySet()) {
             String key = entry.getKey();
-            Object value = entry.getValue();
-
-            if (value instanceof Map) {
-                Map<String, Object> deepValue = (Map<String, Object>) value;
-
-                switch (deepValue.size()) {
-                    case CHANGED -> {
-                        Object oldValue = deepValue.get(REMOVED);
-                        Object newValue = deepValue.get(ADDED);
-                        sb.append(" ".repeat(2)).append("- ").append(key).append(": ")
-                                .append(oldValue).append("\n")
-                                .append(" ".repeat(2)).append("+ ").append(key).append(": ")
-                                .append(newValue).append("\n");
-                    }
-
-                    case UNCHANGED -> {
-                        if (deepValue.containsKey(ADDED)) {
-                            Object addedValue = deepValue.get(ADDED);
-                            sb.append(" ".repeat(2)).append("+ ").append(key).append(": ")
-                                    .append(addedValue)
-                                    .append("\n");
-
-                        } else {
-                            Object removedValue = deepValue.get(REMOVED);
-                            sb.append(" ".repeat(2)).append("- ").append(key).append(": ")
-                                    .append(removedValue)
-                                    .append("\n");
-                        }
-                    }
-
-                    default -> throw new IllegalStateException("Unexpected size: " + deepValue.size());
+            Status value = entry.getValue();
+            switch (value.getStatusName()) {
+                case ADDED -> {
+                    Object addedValue = value.getNewValue();
+                    sb.append(" ".repeat(2)).append("+ ").append(key).append(": ")
+                            .append(addedValue)
+                            .append("\n");
                 }
-            } else {
-                sb.append(" ".repeat(TABULATION)).append(key).append(": ").append(value).append("\n");
+
+                case REMOVED -> {
+                    Object removedValue = value.getOldValue();
+                    sb.append(" ".repeat(2)).append("- ").append(key).append(": ")
+                            .append(removedValue)
+                            .append("\n");
+                }
+
+                case CHANGED -> {
+                    Object oldValue = value.getOldValue();
+                    Object newValue = value.getNewValue();
+                    sb.append(" ".repeat(2)).append("- ").append(key).append(": ")
+                            .append(oldValue).append("\n")
+                            .append(" ".repeat(2)).append("+ ").append(key).append(": ")
+                            .append(newValue).append("\n");
+                }
+
+                case UNCHANGED -> {
+                    Object unchangedValue = value.getOldValue();
+                    sb.append(" ".repeat(TABULATION)).append(key).append(": ").append(unchangedValue).append("\n");
+                }
+
+                default -> throw new Exception("Unknown status name: " + value.getStatusName() + "!");
             }
         }
 
