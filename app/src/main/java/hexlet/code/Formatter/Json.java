@@ -7,12 +7,6 @@ import java.util.Map;
 
 public class Json {
 
-//    public static String render(Map<String, Object> diff) throws Exception {
-//        ObjectMapper mapper = new ObjectMapper();
-//
-//        return mapper.writeValueAsString(diff);
-//    }
-
     public static String render(Map<String, Status> diff) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
 
