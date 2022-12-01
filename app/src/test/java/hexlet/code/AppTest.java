@@ -63,12 +63,20 @@ public final class AppTest {
     @Test
     public void testExceptionWasThrown() {
         Map<String, Status> testMap1 = new HashMap<>();
+        String testString = "qwerty";
         testMap1.put("key", new Status(Status.ADDED, 1));
-        Exception exception = assertThrows(Exception.class, () -> Formatter.format(testMap1, "bingo"));
+        Exception formatterException = assertThrows(Exception.class, () -> Formatter.format(testMap1, "bingo"));
+        Exception parseException = assertThrows(Exception.class, () -> Parser.parse(testString, "sonj"));
 
-        String expectedMessage = "Unknown format: bingo!";
-        String actualMessage = exception.getMessage();
+        String expectedFormatterMessage = "Unknown format: bingo!";
+        String actualFormatterExceptionMessage = formatterException.getMessage();
 
-        assertTrue(actualMessage.contains(expectedMessage));
+        assertTrue(actualFormatterExceptionMessage.contains(expectedFormatterMessage));
+
+        String expectedParserMessage = "Unknown data format: sonj!";
+        String actualParserExceptionMessage = parseException.getMessage();
+        assertTrue(actualParserExceptionMessage.contains(expectedParserMessage));
+
+
     }
 }
