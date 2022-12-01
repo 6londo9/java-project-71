@@ -60,60 +60,6 @@ public final class AppTest {
         JSONAssert.assertEquals(resultJson, actualJson, false);
     }
 
-//    @Test
-//    public void testStylishDifferFromJson() throws Exception {
-//        firstFilePath = getFixturePath("file1.json").toString();
-//        secondFilePath = getFixturePath("file2.json").toString();
-//        String actual = Differ.generate(firstFilePath, secondFilePath);
-//        String expected = resultStylish;
-//        assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void testStylishDifferFromYML() throws Exception {
-//        firstFilePath = getFixturePath("file1.yml").toString();
-//        secondFilePath = getFixturePath("file1.yml").toString();
-//        String actual = Differ.generate(firstFilePath, secondFilePath);
-//        String expected = resultStylish;
-//        assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void testPlainDifferFromJson() throws Exception {
-//        firstFilePath = getFixturePath("file1.json").toString();
-//        secondFilePath = getFixturePath("file2.json").toString();
-//        String actual = Differ.generate(firstFilePath, secondFilePath, "plain");
-//        String expected = resultPlain;
-//        assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void testPlainDifferFromYML() throws Exception {
-//        firstFilePath = getFixturePath("file1.yml").toString();
-//        secondFilePath = getFixturePath("file2.yml").toString();
-//        String actual = Differ.generate(firstFilePath, secondFilePath, "plain");
-//        String expected = resultPlain;
-//        assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void testJsonDifferFromJson() throws Exception {
-//        firstFilePath = getFixturePath("file1.json").toString();
-//        secondFilePath = getFixturePath("file1.json").toString();
-//        String actual = Differ.generate(firstFilePath, secondFilePath, "json");
-//        String expected = resultJson;
-//        assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void testJsonDifferFromYml() throws Exception {
-//        firstFilePath = getFixturePath("file1.yml").toString();
-//        secondFilePath = getFixturePath("file2.yml").toString();
-//        String actual = Differ.generate(firstFilePath, secondFilePath, "json");
-//        String expected = resultJson;
-//        assertEquals(expected, actual);
-//    }
-
     @Test
     public void testExceptionWasThrown() {
         Map<String, Status> testMap1 = new HashMap<>();
