@@ -1,3 +1,8 @@
-name: Garry
-age: 33
-job: Civil Engineer
+id:
+  fact: 65789210
+  mask: ideal
+host: 127.00.1.12.12
+nickname: Hippo
+server: US
+isOnline: true
+friends: 1

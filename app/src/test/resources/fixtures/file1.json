@@ -1,7 +1,11 @@
 {
-  "test": {
-    "nested": true
+  "id": {
+    "fact": 65789210,
+    "mask": "ideal"
   },
-  "make": 20,
-  "faketest": null
+  "host": "127.00.1.12.12",
+  "nickname": "Hippo",
+  "server": "US",
+  "isOnline": true,
+  "friends": 1
 }

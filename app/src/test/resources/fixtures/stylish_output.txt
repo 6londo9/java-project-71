@@ -1,0 +1,12 @@
+{
+  - friends: 1
+    host: 127.00.1.12.12
+  - id: {fact=65789210, mask=ideal}
+  + id: {fact=65789210, mask=null}
+  - isOnline: true
+  + isOnline: false
+  + lvl: 35
+  - nickname: Hippo
+  + nickname: {previous=Hippo, current=qwerty}
+    server: US
+}

@@ -1,7 +1,0 @@
-{
-  - age: 33
-  + age: 32
-  + city: Bogota
-  - job: Civil Engineer
-    name: Garry
-}

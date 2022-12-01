@@ -1,1 +1,0 @@
-{"age":{"statusName":"changed","oldValue":33,"newValue":32},"city":{"statusName":"added","oldValue":null,"newValue":"Bogota"},"job":{"statusName":"removed","oldValue":"Civil Engineer","newValue":null},"name":{"statusName":"unchanged","oldValue":"Garry","newValue":null}}

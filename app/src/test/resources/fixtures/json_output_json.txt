@@ -1,1 +1,0 @@
-{"breaktest":{"statusName":"added","oldValue":null,"newValue":20},"faketest":{"statusName":"changed","oldValue":null,"newValue":20},"make":{"statusName":"unchanged","oldValue":20,"newValue":null},"test":{"statusName":"changed","oldValue":{"nested":true},"newValue":10}}

@@ -7,10 +7,9 @@ import java.nio.file.Path;
 import java.util.Map;
 
 public class Differ {
-    private static String dataFormat;
 
     public static String generate(String filepath1, String filepath2, String format) throws Exception {
-        dataFormat = getDataFormat(filepath1);
+        String dataFormat = getDataFormat(filepath1);
         Path firstFilePath = Path.of(filepath1).toAbsolutePath().normalize();
         Path secondFilePath = Path.of(filepath2).toAbsolutePath().normalize();
         String firstFileAsString = Files.readString(firstFilePath);
@@ -28,6 +27,8 @@ public class Differ {
     }
 
     private static String getDataFormat(String content) {
-        return content.substring(content.lastIndexOf(".") + 1);
+        int index = content.lastIndexOf(".");
+        return index > 0 ? content.substring(index + 1)
+                : "";
     }
 }

@@ -1,3 +1,10 @@
-name: Garry
-age: 32
-city: Bogota
+id:
+  fact: 65789210
+  mask: null
+host: 127.00.1.12.12
+nickname:
+  previous: Hippo
+  current: qwerty
+server: US
+isOnline: false
+lvl: 35

@@ -1,0 +1,5 @@
+Property 'friends' was removed
+Property 'id' was updated. From [complex value] to [complex value]
+Property 'isOnline' was updated. From true to false
+Property 'lvl' was added with value: 35
+Property 'nickname' was updated. From 'Hippo' to [complex value]
